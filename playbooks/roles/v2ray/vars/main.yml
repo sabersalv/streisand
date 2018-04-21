@@ -1,0 +1,3 @@
+---
+shadowsocks_gateway_location: "{{ streisand_gateway_location }}/shadowsocks"
+shadowsocks_qr_code: "{{ shadowsocks_gateway_location }}/shadowsocks-qr-code.png"

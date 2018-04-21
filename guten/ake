@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+main() {
+  ansible-playbook -i hosts guten.yml
+}
+
+
+case "$1" in
+  "" ) main ;;
+esac
+

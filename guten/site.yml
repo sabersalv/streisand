@@ -1,0 +1,20 @@
+---
+streisand_ssh_private_key: ~/.ssh/id_rsa
+
+vpn_clients: 1
+
+streisand_v2ray_enabled: yes
+streisand_shadowsocks_enabled: no
+streisand_openconnect_enabled: no
+streisand_openvpn_enabled: no
+streisand_ssh_forward_enabled: no
+streisand_stunnel_enabled: no
+streisand_tinyproxy_enabled: no
+streisand_tor_enabled: no
+streisand_wireguard_enabled: no
+streisand_sshuttle_enabled: no 
+
+# Google Cloud Platform
+gce_zone_var: "23"
+gce_server_name: streisand
+gce_json_file_location: "/Users/guten/.secrets/google-cloud-vpn.json"

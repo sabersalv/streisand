@@ -1,0 +1,27 @@
+{
+  "inbound": {
+    "port": 1080,
+    "protocol": "socks",
+    "domainOverride": ["tls","http"],
+    "settings": {
+      "auth": "noauth"
+    }
+  },
+  "outbound": {
+    "protocol": "vmess",
+    "settings": {
+      "vnext": [
+        {
+          "address": "{{ streisand_ipv4_address }}",
+          "port": {{ v2ray_vmess_port }},
+          "users": [
+            {
+              "id": "{{ v2ray_vmess_client_id }}",
+              "alterId": {{ v2ray_vmess_alert_id }}
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

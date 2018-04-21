@@ -1,0 +1,57 @@
+---
+# - name: Install v2ray
+  #shell: curl -sL https://install.direct/go.sh | bash
+
+#- name: Create Configuration file
+  #template: src=server-config.json.j2 dest=/etc/v2ray/config.json mode=0644
+
+- name: Enable the V2ray service so it starts at boot, and bring it up
+  systemd: name=v2ray state=restarted enabled=yes
+
+# For some providers (e.g. GCE/AWS) the streisand_ipv4_address != the
+# ansible_default_ipv4.address, and the Shadowsocks service is bound to the
+# latter instead of the former. We check both, tolerating errors checking the
+# former. This mess should probably be addressed in a more forward facing
+# manner.
+- block:
+    - name: "Check that the V2ray service started ({{ streisand_ipv4_address }})"
+      wait_for:
+        host: "localhost"
+        port: "{{ v2ray_vmess_port }}"
+        state: started
+        timeout: 30
+      ignore_errors: yes
+  rescue:
+    - name: "Check that the Shadowsocks service started ({{ ansible_default_ipv4.address }})"
+      wait_for:
+        host: "{{ ansible_default_ipv4.address }}"
+        port: "{{ shadowsocks_server_port }}"
+        state: started
+        timeout: 30
+
+- import_tasks: pnotes.yml
+
+#- name: "Generate QR Code"
+# shell: |
+#   qr_json='{
+#     "ps": "{{inventory_hostname}}",
+#     "add": "{{streisand_ipv4_address}}",
+      # "port": "{{v2ray_vmess_port}}",
+      # "id": "{{v2ray_vmess_client_id}}",
+    #   "aid": "aid",
+    #   "net": "tcp",
+    #   "type": "none",
+    #   "host": "",
+    #   "tls": ""
+    # \}'
+    # vmess_url="vmess://$(echo $qr_json | base64 --wrap=0)"
+    # echo "$vmess_url" | qrencode -s 8 -o {{ v2ray_vmess_qr_code }}
+
+# Apply the Shadowsocks firewall rules
+# - import_tasks: firewall.yml
+
+# Generate the Shadowsocks gateway docs & client QR code
+# - import_tasks: docs.yml
+
+# Mirror the Shadowsocks clients
+# - import_tasks: mirror.yml

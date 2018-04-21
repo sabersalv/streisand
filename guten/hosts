@@ -1,0 +1,2 @@
+[streisand-host]
+vpntw ansible_user=ubuntu

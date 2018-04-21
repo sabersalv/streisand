@@ -1,0 +1,10 @@
+---
+- name: vars
+  command: echo /Users/guten/dev/one/pnotes
+  register: pnotes_dir
+
+- name: 'Copy client.json to pnotes'
+  local_action: template src=client-config.json.j2 dest={{pnotes_dir}}/source/_vpns/v2ray/{{inventory_hostname}}.json
+
+- name: 'Deploy pnotes'
+  local_action: shell cd {{pnotes_dir}} && ./ake deploy

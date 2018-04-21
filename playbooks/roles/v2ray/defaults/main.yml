@@ -1,0 +1,4 @@
+---
+v2ray_vmess_port: 8531
+v2ray_vmess_client_id: "{{ 999999999999999999999 | random | to_uuid }}"
+v2ray_vmess_alert_id: 64

@@ -68,7 +68,7 @@ streisand_wireguard_enabled: yes
 # 39. South America        (São Paulo C)
 #
 # Note: gce_zone_var must be a number in quotes, e.g. "3" not 3.
-gce_zone_var: "3"
+gce_zone_var: "23"
 
 gce_server_name: streisand
 

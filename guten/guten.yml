@@ -1,0 +1,10 @@
+- name: Configure the Server and install required software
+  hosts: streisand-host
+  remote_user: "root"
+  become: true
+
+  vars:
+    streisand_ssh_private_key: ~/.ssh/id_rsa
+
+  roles:
+    - ../playbooks/roles/v2ray
