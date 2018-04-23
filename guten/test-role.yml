@@ -1,4 +1,5 @@
-- name: Configure the Server and install required software
+---
+- name: Test
   hosts: streisand-host
   remote_user: "root"
   become: true

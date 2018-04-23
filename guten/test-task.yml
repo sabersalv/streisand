@@ -1,0 +1,13 @@
+---
+- name: Test
+  hosts: local
+  connection: local
+
+  vars:
+    streisand_ipv4_address: address
+    pnotes_dir: /Users/guten/dev/one/notes/pnotes
+  vars_files:
+    - ../playbooks/roles/v2ray/defaults/main.yml
+
+  tasks:
+    - import_tasks: ../playbooks/roles/v2ray/tasks/pnotes.yml

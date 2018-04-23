@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
+# ./ake test-role
+# ./ake test-task
+
+
 main() {
-  ansible-playbook -i hosts guten.yml
+  ansible-playbook -v -i hosts $1.yml
 }
 
 
 case "$1" in
-  "" ) main ;;
+  * ) main "$@" ;;
 esac
 

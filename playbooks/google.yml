@@ -59,6 +59,7 @@
     - roles/stunnel/defaults/main.yml
     - roles/tor-bridge/defaults/main.yml
     - roles/wireguard/defaults/main.yml
+    - roles/v2ray/defaults/main.yml
 
   vars_prompt:
     - name: "gce_zone_var"

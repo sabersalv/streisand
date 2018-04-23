@@ -26,6 +26,8 @@
       when: streisand_openvpn_enabled
     - role: shadowsocks
       when: streisand_shadowsocks_enabled
+    - role: v2ray
+      when: streisand_v2ray_enabled
     - role: ssh-forward
       when: streisand_ssh_forward_enabled
     - role: tinyproxy

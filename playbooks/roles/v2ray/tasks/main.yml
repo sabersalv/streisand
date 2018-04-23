@@ -1,9 +1,9 @@
 ---
-# - name: Install v2ray
-  #shell: curl -sL https://install.direct/go.sh | bash
+- name: Install v2ray
+  shell: curl -sL https://install.direct/go.sh | bash
 
-#- name: Create Configuration file
-  #template: src=server-config.json.j2 dest=/etc/v2ray/config.json mode=0644
+- name: Create Configuration file
+  template: src=server-config.json.j2 dest=/etc/v2ray/config.json mode=0644
 
 - name: Enable the V2ray service so it starts at boot, and bring it up
   systemd: name=v2ray state=restarted enabled=yes
